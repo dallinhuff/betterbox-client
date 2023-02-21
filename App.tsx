@@ -1,9 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Home from './screens/Home'
+import { NavigationContainer } from "@react-navigation/native";
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+export type RootStackParamList = {
+  Home: undefined, // undefined because you aren't passing any params to the home screen
+  TabOneScreen: undefined,
+  Profile: { name: string }; 
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+
 
 export default function App() {
 	const isLoadingComplete = useCachedResources();
@@ -12,10 +22,19 @@ export default function App() {
 		return null;
 	} else {
 		return (
-			<SafeAreaProvider>
-				<Navigation colorScheme={colorScheme} />
-				<StatusBar />
-			</SafeAreaProvider>
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName="Home">
+					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+					{/* <Stack.Screen name="Tab One" component={TabOneScreen} /> */}
+					{/* <Stack.Screen
+						name="Profile"
+						component={Profile}
+						initialParams={{ userId: user.id }}
+					/>
+					<Stack.Screen name="Feed" component={Feed} /> */}
+				</Stack.Navigator>
+			</NavigationContainer>
+			
 		);
 	}
 }
