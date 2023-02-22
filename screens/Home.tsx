@@ -1,9 +1,10 @@
 import { StyleSheet, Pressable, Image } from 'react-native';
 
-import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
+import { useState } from "react";
+import { loadPartialConfigAsync } from '@babel/core';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -17,8 +18,12 @@ type Props = {
 
 export default function Home({navigation}: Props) {
 
+	const register = () => {
+		navigation.navigate('Register')
+	};
+
 	const login = () => {
-		// navigation.navigate("TabOneScreen")
+		navigation.navigate('Login')
 	};
 
 	return (
@@ -29,10 +34,12 @@ export default function Home({navigation}: Props) {
 			<Text style={{ fontSize: "24",marginBottom: 10, color: '#707070', marginTop: -300,}}>Welcome to</Text>
 			<Text style={{ fontSize: "48",marginBottom: 10, color: '#707070'}}>BETTERBOX</Text>
 			<Text style={{ fontSize: "16",marginBottom: 10, color: '#707070'}}>The social movie rating app.</Text>
-			<Pressable style={styles.getStarted} onPress={() => login()}>
+			<Pressable style={styles.getStarted} onPress={() => register()}>
 				<Text style={{ fontSize: "24",marginBottom: 10, marginTop: 5, color: '#fffcf2'}}>Get Started</Text>
 			</Pressable>
-			<Pressable>
+
+			
+			<Pressable onPress={() => login()}>
 				<Text style={{ fontSize: "11", marginTop: 10, color: "#707070", textDecorationLine: 'underline', marginBottom: 100,}}>I ALREADY HAVE AN ACCOUNT</Text>
 			</Pressable>
 		</View>
@@ -40,6 +47,7 @@ export default function Home({navigation}: Props) {
 }
 
 const styles = StyleSheet.create({
+	
 	container: {
 		headerShown: false,
 		flex: 1,

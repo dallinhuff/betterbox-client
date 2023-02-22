@@ -1,4 +1,6 @@
 import Home from './screens/Home'
+import Register from './screens/Register'
+import Login from './screens/Login'
 import { NavigationContainer } from "@react-navigation/native";
 
 import useCachedResources from './hooks/useCachedResources';
@@ -7,7 +9,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 export type RootStackParamList = {
   Home: undefined, // undefined because you aren't passing any params to the home screen
-  TabOneScreen: undefined,
+//   Register: undefined,
   Profile: { name: string }; 
 };
 
@@ -25,6 +27,8 @@ export default function App() {
 			<NavigationContainer>
 				<Stack.Navigator initialRouteName="Home">
 					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
+					<Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
+					<Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
 					{/* <Stack.Screen name="Tab One" component={TabOneScreen} /> */}
 					{/* <Stack.Screen
 						name="Profile"
