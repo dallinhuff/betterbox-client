@@ -1,6 +1,10 @@
 import Home from './screens/Home'
 import Register from './screens/Register'
 import Login from './screens/Login'
+import Profile from './screens/Profile'
+import Story from './screens/Story'
+import Followers from './screens/Followers'
+import Following from './screens/Following'
 import { NavigationContainer } from "@react-navigation/native";
 
 import useCachedResources from './hooks/useCachedResources';
@@ -29,6 +33,10 @@ export default function App() {
 					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
 					<Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
 					<Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+					<Stack.Screen name="Profile" component={Profile} options={{headerShown: false}}/>
+					<Stack.Screen name="Story" component={Story} options={{headerShown: false}}/>
+					<Stack.Screen name="Followers" component={Followers} options={{headerShown: false}}/>
+					<Stack.Screen name="Following" component={Following} options={{headerShown: false}}/>
 					{/* <Stack.Screen name="Tab One" component={TabOneScreen} /> */}
 					{/* <Stack.Screen
 						name="Profile"
