@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { useState } from "react";
 import { loadPartialConfigAsync } from '@babel/core';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
 import ProfileHeader from './ProfileHeader';
 import Story from './Story';
@@ -21,28 +22,20 @@ type Props = {
   
 };
 
-const Card = () => {
-	let content
-
-	if (cardTitle == "story") {
-		content = <Story></Story>
-	} else if (cardTitle == "followers") {
-		content = <Followers></Followers>
-	} else {
-		content = <Following></Following>
-	}
-
-	return content
-}
-
-let cardTitle = "story";
+const Tab = createMaterialTopTabNavigator();
 
 export default function Home({}: Props) {
 
 	return (
 		<View style={styles.container}>
 			<ProfileHeader name='Test' handle='@test1'></ProfileHeader>
-			<Card></Card>
+			<View style={styles.tabs}>
+				<Tab.Navigator>
+					<Tab.Screen name="Story" component={Story} />
+					<Tab.Screen name="Followers" component={Followers} />
+					<Tab.Screen name="Following" component={Following} />
+				</Tab.Navigator>
+			</View>
 		</View>
 	);
 }
@@ -56,6 +49,28 @@ const styles = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'center',
 		backgroundColor: '#fffcf2',
+	},
+	tabs: {
+		flex: 1,
+		flexDirection: 'row',
+		backgroundColor: '#fffcf2',
+	},
+	tab: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+		backgroundColor: '#ff797f',
+		paddingTop: 15,
+		borderLeftWidth: 0.5,
+		borderLeftColor: '#000000',
+		borderRightWidth: 0.5,
+		borderRightColor: '#000000',
+	},
+	text: {
+		flex: 1,
+		fontSize: "24",
+		marginBottom: 5,
+		color: '#fffcf2',
 	},
 
 });

@@ -68,7 +68,7 @@ const Item = ({title}: ItemProps) => {
 export default function Home({}: Props) {
 
 	return (
-		<FlatList
+		<FlatList style={styles.container}
         data={DATA}
         renderItem={({item}) => <Item title={item.title} />}
         keyExtractor={item => item.id}
