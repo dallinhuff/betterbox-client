@@ -1,6 +1,8 @@
 import Home from './screens/Home'
 import Register from './screens/Register'
 import Login from './screens/Login'
+import EmailRegister from './screens/EmailRegister';
+import EmailLogin from './screens/EmailLogin';
 import { NavigationContainer } from "@react-navigation/native";
 
 import useCachedResources from './hooks/useCachedResources';
@@ -29,13 +31,8 @@ export default function App() {
 					<Stack.Screen name="Home" component={Home} options={{headerShown: false}} />
 					<Stack.Screen name="Register" component={Register} options={{headerShown: false}}/>
 					<Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
-					{/* <Stack.Screen name="Tab One" component={TabOneScreen} /> */}
-					{/* <Stack.Screen
-						name="Profile"
-						component={Profile}
-						initialParams={{ userId: user.id }}
-					/>
-					<Stack.Screen name="Feed" component={Feed} /> */}
+					<Stack.Screen name="EmailRegister" component={EmailRegister} options={{headerShown: false}}/>
+					<Stack.Screen name="EmailLogin" component={EmailLogin} options={{headerShown: false}}/>
 				</Stack.Navigator>
 			</NavigationContainer>
 			

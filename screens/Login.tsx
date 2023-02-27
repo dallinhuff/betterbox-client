@@ -40,7 +40,7 @@ export default function Login({navigation}: Props) {
                         <Text style={{color: '#fffcf2'}}>Sign in with google</Text>
                     </Pressable> */}
                     <DropShadow style={styles.shadowProp}> 
-                        <Pressable style={styles.button}>
+                        <Pressable style={styles.button} onPress={() => navigation.navigate('EmailLogin')}>
                             <Text style={styles.signUp}>Login with email</Text>
                         </Pressable>
                     </DropShadow>

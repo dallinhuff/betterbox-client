@@ -29,9 +29,11 @@ export default function Register({navigation}: Props) {
                 ></Image>
             </Pressable>
             <View style={styles.container}>
+                
                 <Image
                     style={styles.film}
                     source={require("../assets/images/film-icon.png")}></Image>
+                <Text style={{ fontSize: "16", marginBottom: 150, color: '#707070', marginTop: -150, width: 150, textAlign: 'center' }}>Choose an account creation method.</Text>
                 <View style={{backgroundColor: '#fffcf2', marginBottom: 200,}}>
                     {/* <Pressable style={styles.button}>
                         <Text style={{color: '#fffcf2'}}>Sign in with apple</Text>
@@ -40,7 +42,7 @@ export default function Register({navigation}: Props) {
                         <Text style={{color: '#fffcf2'}}>Sign in with google</Text>
                     </Pressable> */}
                     <DropShadow style={styles.shadowProp}> 
-                        <Pressable style={styles.button}>
+                        <Pressable style={styles.button} onPress={() => navigation.navigate('EmailRegister')}>
                             <Text style={styles.signUp}>Sign up with email</Text>
                         </Pressable>
                     </DropShadow>
@@ -53,9 +55,6 @@ export default function Register({navigation}: Props) {
 			
 		</View>
 	);
-
-    
-
 
 }
 
