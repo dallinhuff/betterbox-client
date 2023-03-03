@@ -4,9 +4,7 @@ import { Text, View } from '../components/Themed';
 import { StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import DropShadow from "react-native-drop-shadow";  
 import { useState } from 'react';
-
-
-
+import axios from 'axios';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -16,15 +14,32 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 type Props = {
   navigation: ProfileScreenNavigationProp;
 };
-export default function EmailLogin({navigation}: Props) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [mismatch, setMismatch] = useState(false);
 
-    const checkEmailAndPass = () => {
-        //check if email or password doesn't exist
-        //navigation.navigate()
-    };
+
+export default function EmailLogin({navigation}: Props) {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const mismatch = false;
+    const baseUrl = 'http://localhost:3000'
+
+
+    const getUser = async () => {
+        const url = `${baseUrl}/user/login`;
+        const data = {
+            "username": username,
+            "password": password}
+        axios
+            .post(url, data, { headers: {'content-type': 'application/json'}})
+            .then((response) => {
+                console.log(response.data);
+                // TODO: Do something with the authToken
+                // navigation.navigate()
+            })
+            .catch((error) => {
+                console.log("ERROR");
+                console.log(error);
+            });
+    }
 
     return (
         <View style={styles.fullContainer}>
@@ -45,10 +60,10 @@ export default function EmailLogin({navigation}: Props) {
                     <TextInput
                         style={styles.input}
                         onChangeText={(value) => {
-                            setEmail(value)}}
-                        value={email}
+                            setUsername(value)}}
+                        value={username}
                         autoCapitalize='none'
-                        placeholder="Email ..."
+                        placeholder="Username ..."
                     /> 
                     <TextInput
                         style={styles.input}
@@ -60,10 +75,10 @@ export default function EmailLogin({navigation}: Props) {
                         secureTextEntry={true}
                     />
                     {mismatch && (
-                        <Text style={{color: '#ff797f', textAlign: 'center', marginBottom: 10}}>Email or password is incorrect</Text>
+                        <Text style={{color: '#ff797f', textAlign: 'center', marginBottom: 10}}>Username or password is incorrect</Text>
                     )}
                     <DropShadow style={styles.shadowProp}> 
-                        <Pressable style={styles.button} onPress={() => checkEmailAndPass()}>
+                        <Pressable style={styles.button} onPress={() => getUser()}>
                             <Text style={styles.continue}>LOGIN</Text>
                         </Pressable>
                     </DropShadow>

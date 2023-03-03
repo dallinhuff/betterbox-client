@@ -4,6 +4,7 @@ import { Text, View } from '../components/Themed';
 import { StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import DropShadow from "react-native-drop-shadow";  
 import { useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -17,37 +18,33 @@ type Props = {
   navigation: ProfileScreenNavigationProp;
 };
 export default function EmailRegister({navigation}: Props) {
+    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [avatar, setAvatar] = useState('');
     const [email, setEmail] = useState('');
-    const [email2, setEmail2] = useState('');
     const [password, setPassword] = useState('');
-    const [password2, setPassword2] = useState('');
-    const [emailMismatch, setEmailMismatch] = useState(false);
-    const [passMismatch, setPassMismatch] = useState(false);
-    const [showEmails, setShowEmails] = useState(true);
-    const [showPasswords, setShowPasswords] = useState(false);
+    const baseUrl = 'http://localhost:3000'
 
-    const checkEmails = () => {
-        if (email == email2) {
-            setEmailMismatch(false)
-            setShowEmails(false)
-            setShowPasswords(true)
-            
-        }
-        else {
-            setEmailMismatch(true)
-        }
-    };
-
-    const checkPasswords = () => {
-        if (password == password2) {
-            setPassMismatch(false)
-            // register
-            // navigation.navigate()
-        }
-        else {
-            setPassMismatch(true)
-        }
-    };
+    const register = () => {
+        const url = `${baseUrl}/user/register`;
+        const data = {
+            "name": name,
+            "email": email,
+            "username": username,
+            "password": password,
+            "avatar": avatar}
+        axios
+            .post(url, data, { headers: {'content-type': 'application/json'}})
+            .then((response) => {
+                console.log(response.data);
+                // TODO: Do something with the authToken
+                // navigation.navigate()
+            })
+            .catch((error) => {
+                console.log("ERROR");
+                console.log(error);
+            });
+    }
 
     return (
         <View style={styles.fullContainer}>
@@ -62,67 +59,54 @@ export default function EmailRegister({navigation}: Props) {
                 <Image
                     style={styles.film}
                     source={require("../assets/images/film-icon.png")}></Image>
-                <Text style={{fontSize: "16", color: '#707070', marginTop: -100, textAlign: 'center'}}>Let’s get started!</Text>
-                <Text style={{fontSize: "16", color: '#707070', width: 200, textAlign: 'center'}}>Please enter your email and a secure password.</Text>
-                {showEmails && (
-                    <View style={{backgroundColor: '#fffcf2', marginBottom: 200,}}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => {
-                                setEmail(value)}}
-                            value={email}
-                            autoCapitalize='none'
-                            placeholder="Email ..."
-                        /> 
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => {
-                                setEmail2(value)}}
-                            value={email2}
-                            autoCapitalize='none'
-                            placeholder="Confirm Email ..."
-                        />
-                        {emailMismatch && (
-                            <Text style={{color: '#ff797f', textAlign: 'center', marginBottom: 10}}>Emails don't match</Text>
-                        )}
+                <Text style={{fontSize: "16", color: '#707070', marginTop: -100, textAlign: 'center', marginBottom: 50,}}>Let’s get started!</Text>
+                <View style={{backgroundColor: '#fffcf2'}}>
+                <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => {
+                            setName(value)}}
+                        value={name}
+                        placeholder="Name"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => {
+                            setEmail(value)}}
+                        value={email}
+                        autoCapitalize='none'
+                        placeholder="Email"
+                    /> 
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => {
+                            setUsername(value)}}
+                        value={username}
+                        autoCapitalize='none'
+                        placeholder="Username"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => {
+                            setPassword(value)}}
+                        value={password}
+                        autoCapitalize='none'
+                        placeholder="Password"
+                        secureTextEntry={true}
+                    /> 
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => {
+                            setAvatar(value)}}
+                        value={avatar}
+                        autoCapitalize='none'
+                        placeholder="Avatar"
+                    />
                         <DropShadow style={styles.shadowProp}> 
-                            <Pressable style={styles.button} onPress={() => checkEmails()}>
-                                <Text style={styles.continue}>CONTINUE</Text>
-                            </Pressable>
-                        </DropShadow>
-                    </View>
-                )}
-                {showPasswords && (
-                    <View style={{backgroundColor: '#fffcf2', marginBottom: 200,}}>
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => {
-                                setPassword(value)}}
-                            value={password}
-                            autoCapitalize='none'
-                            placeholder="Password ..."
-                            secureTextEntry={true}
-                        /> 
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={(value) => {
-                                setPassword2(value)}}
-                            value={password2}
-                            autoCapitalize='none'
-                            placeholder="Confirm Password ..."
-                            secureTextEntry={true}
-                        />
-                        {passMismatch && (
-                            <Text style={{color: '#ff797f', textAlign: 'center', marginBottom: 10}}>Passwords don't match</Text>
-                        )}
-                        <DropShadow style={styles.shadowProp}> 
-                            <Pressable style={styles.button} onPress={() => checkPasswords()}>
+                            <Pressable style={styles.button} onPress={() => register()}>
                                 <Text style={styles.continue}>REGISTER</Text>
                             </Pressable>
                         </DropShadow>
                     </View>
-
-                )}
                 <Pressable onPress={() => navigation.navigate('Login')}>
                     <Text style={{ fontSize: "11", marginTop: 10, color: "#707070", textDecorationLine: 'underline', marginBottom: 100,}}>I ALREADY HAVE AN ACCOUNT</Text>
                 </Pressable>
@@ -160,7 +144,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         padding: 10,
         borderColor: '#ff797f',
-        marginBottom: 20,
+        fontSize: 20,
     },
     button: {
         backgroundColor: '#ff797f',
