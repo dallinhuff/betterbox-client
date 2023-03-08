@@ -22,20 +22,57 @@ type Props = {
   
 };
 
-const Tab = createMaterialTopTabNavigator();
+// const Tab = createMaterialTopTabNavigator();
 
-export default function Home({}: Props) {
+export default function Profile({}: Props) {
+	const [showStats, setShowStats] = useState(false);
+	const show = () => {
+		if (showStats) {
+			setShowStats(false);
+		} else {
+		setShowStats(true); }
+	}
+
 
 	return (
 		<View style={styles.container}>
-			<ProfileHeader name='Test' handle='@test1'></ProfileHeader>
-			<View style={styles.tabs}>
+			{/* <ProfileHeader name='Test' handle='@test1'></ProfileHeader> */}
+			{/* <View style={styles.tabs}>
 				<Tab.Navigator>
 					<Tab.Screen name="Story" component={Story} />
 					<Tab.Screen name="Followers" component={Followers} />
 					<Tab.Screen name="Following" component={Following} />
 				</Tab.Navigator>
+			</View> */}
+			
+			<Pressable style={{alignSelf: 'flex-end', marginRight: 20, flexDirection: 'row', backgroundColor: '#fffcf2'}} onPress={() =>show()}>
+				{!showStats && 
+				<Text>View Stats</Text> }
+				{showStats && 
+				<Text>Hide Stats</Text> }
+				<Image style={styles.downArrow}
+				source={require("../assets/images/down-arrow.png")}/>
+			</Pressable>
+			{showStats && 
+			<View style={styles.stats}> 
+				<View style={styles.line}/> 
+				<View style={styles.stat}>
+					<Text style={styles.title}>Films</Text>
+					<Text style={styles.number}>12</Text>
+				</View>
+				<View style={styles.line}/>
+				<View style={styles.stat}>
+					<Text style={styles.title}>Reviews</Text>
+					<Text style={styles.number}>46</Text>
+				</View>
+				<View style={styles.line}/>
+				<View style={styles.stat}>
+					<Text style={styles.title}>Likes</Text>
+					<Text style={styles.number}>389</Text>
+				</View> 
 			</View>
+}
+
 		</View>
 	);
 }
@@ -46,10 +83,11 @@ const styles = StyleSheet.create({
 		headerShown: false,
 		flex: 1,
 		flexDirection: 'column',
-		alignItems: 'flex-start',
+		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#fffcf2',
 	},
+
 	tabs: {
 		flex: 1,
 		flexDirection: 'row',
@@ -72,5 +110,38 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 		color: '#fffcf2',
 	},
-
+	downArrow: {
+		width: 15,
+		height: 15,
+		resizeMode: 'contain',
+		marginLeft: 4,
+	},
+	line: {
+		alignSelf: 'stretch',
+		borderBottomColor: '#E7D7C1',
+		margin: 20,
+		borderBottomWidth: StyleSheet.hairlineWidth,
+	},
+	stats: {
+		alignSelf: 'stretch',
+		backgroundColor: '#fffcf2',
+		marginBottom: -100,
+	},
+	stat: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		alignSelf: 'stretch',
+		backgroundColor: '#fffcf2',
+		marginLeft: 40,
+		marginRight: 40,
+		marginTop: -5,
+		marginBottom: -5,
+	},
+	title: {
+		fontSize: 18,
+	},
+	number: {
+		textAlign: 'right',
+		fontSize: 18,
+	}
 });
