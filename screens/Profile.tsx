@@ -5,20 +5,24 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { useState } from "react";
 import React from 'react';
+import axios from 'axios';
+import { useEffect } from 'react';
+
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Home'
 >;
 
-type Props = {
-  
-};
+// type Props = {
+//   authToken: route.params.authToken;
+// };
 
 // const Tab = createMaterialTopTabNavigator();
 
-export default function Profile({}: Props) {
-	const recentReviews1 = [{"key": 1, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"}, 
+export default function Profile({route, navigation}: any) {
+	const authToken = route.params.authToken
+	const fakeData = [{"key": 1, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"}, 
 							{"key": 2, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"},
 							{"key": 3, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"},
 							{"key": 4, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"}, 
@@ -31,8 +35,33 @@ export default function Profile({}: Props) {
 	const [films, setFilms] = useState(12);
 	const [reviews, setReviews] = useState(46);
 	const [likes, setLikes] = useState(389);
-	const [recentReviews, setRecentReviews] = useState(recentReviews1);
+	const [recentReviews, setRecentReviews] = useState(fakeData);
+	const [username, setUsername] = useState();
+	const [name, setName] = useState();
+	const [email, setEmail] = useState();
+	const [avatar, setAvatar] = useState();
 
+	const baseUrl = 'http://localhost:3000'
+
+
+	useEffect(() => {
+        const url = `${baseUrl}/user/me`;
+        const data = {
+            "authToken": authToken}
+        axios
+            .post(url, data, { headers: {'content-type': 'application/json'}})
+            .then((response) => {
+                console.log(response.data);
+				setUsername(response.data.usename);
+				setName(response.data.name);
+				setEmail(response.data.email);
+				setAvatar(response.data.avatar);
+            })
+            .catch((error) => {
+                console.log("ERROR");
+                console.log(error);
+            });
+    }, [])
 
 	const show = () => {
 		if (showStats) {
@@ -114,9 +143,6 @@ const styles = StyleSheet.create({
 	container: {
 		headerShown: false,
 		flex: 1,
-		// flexDirection: 'column',
-		// alignItems: 'center',
-		// justifyContent: 'center',
 		backgroundColor: '#fffcf2',
 	},
 

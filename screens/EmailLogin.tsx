@@ -33,7 +33,10 @@ export default function EmailLogin({navigation}: Props) {
             .then((response) => {
                 console.log(response.data);
                 // TODO: Do something with the authToken
-                // navigation.navigate()
+                navigation.navigate('MainPages', {
+                    authToken: response.data.authToken,
+                  })
+                // navigation.navigate("Profile", {"authToken": response.data.authToken})
             })
             .catch((error) => {
                 console.log("ERROR");

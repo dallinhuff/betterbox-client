@@ -20,7 +20,7 @@ import Colors from './constants/Colors'
 export type RootStackParamList = {
 	Home: undefined, // undefined because you aren't passing any params to the home screen
 	//   Register: undefined,
-	MainPages: undefined,
+	MainPages: {authToken: string},
 	Login: undefined,
 	Profile: { name: string };
 	Register: undefined,
@@ -31,7 +31,7 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
-function MainPages() {
+function MainPages({route}: any) {
 	return (
 		<Tab.Navigator
 			initialRouteName="Profile"
@@ -80,6 +80,7 @@ function MainPages() {
 					),
 					tabBarShowLabel: false,
 				}}
+				initialParams={{authToken: route.params.authToken}}
 			/>
 			<Tab.Screen
 				name="Notifications"
