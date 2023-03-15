@@ -22,7 +22,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 // const Tab = createMaterialTopTabNavigator();
 
 export default function Profile({route, navigation}: any) {
-	const authToken = "route.params.authToken"
+	const authToken = route.params.authToken
 	const fakeData = [{"key": 1, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"},
 		{"key": 2, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"},
 		{"key": 3, "image": "image", "title": "Cars", "rating": 10, "date": "3/3/23", "review": "Guido doing the tire switch is a goated scene. Still a classic"},
