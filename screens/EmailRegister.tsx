@@ -4,7 +4,8 @@ import { Text, View } from '../components/Themed';
 import { StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import DropShadow from "react-native-drop-shadow";  
 import { useState } from 'react';
-import axios from 'axios';
+import {NetworkCommunicator} from "../network/NetworkCommunicator";
+import registerUser = NetworkCommunicator.registerUser;
 
 
 
@@ -23,27 +24,17 @@ export default function EmailRegister({navigation}: Props) {
     const [avatar, setAvatar] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const baseUrl = 'http://localhost:3000'
 
-    const register = () => {
-        const url = `${baseUrl}/user/register`;
-        const data = {
-            "name": name,
-            "email": email,
-            "username": username,
-            "password": password,
-            "avatar": avatar}
-        axios
-            .post(url, data, { headers: {'content-type': 'application/json'}})
-            .then((response) => {
-                console.log(response.data);
-                // TODO: Do something with the authToken
-                // navigation.navigate()
-            })
-            .catch((error) => {
-                console.log("ERROR");
-                console.log(error);
-            });
+    const register = async () => {
+        try {
+            const user = { username, password, name, email, avatar };
+            const response = await registerUser(user);
+            const authToken = response.data.authToken;
+            // TODO: do something with the authToken and navigate
+        } catch (e) {
+            console.log("ERROR");
+            console.log(e);
+        }
     }
 
     return (
