@@ -5,9 +5,10 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { useState } from "react";
 import React from 'react';
-import axios from 'axios';
 import { useEffect } from 'react';
 import Icon from "react-native-vector-icons/FontAwesome";
+import {NetworkCommunicator} from "../network/NetworkCommunicator";
+import getOwnProfile = NetworkCommunicator.getOwnProfile;
 
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
@@ -42,26 +43,17 @@ export default function Profile({route, navigation}: any) {
 	const [email, setEmail] = useState();
 	const [avatar, setAvatar] = useState();
 
-	const baseUrl = 'http://localhost:3000'
-
-
 	useEffect(() => {
-		const url = `${baseUrl}/user/me`;
-		const data = {
-			"authToken": authToken}
-		axios
-			.post(url, data, { headers: {'content-type': 'application/json'}})
-			.then((response) => {
-				console.log(response.data);
-				setUsername(response.data.usename);
-				setName(response.data.name);
-				setEmail(response.data.email);
-				setAvatar(response.data.avatar);
+		getOwnProfile(authToken)
+			.then(r => {
+				setUsername(r.data.username);
+				setName(r.data.name);
+				setEmail(r.data.email);
+				setAvatar(r.data.avatar);
 			})
-			.catch((error) => {
-				console.log("ERROR");
-				console.log(error);
-			});
+			.catch(e => {
+				console.error(e);
+			})
 	}, [])
 
 	const show = () => {
@@ -70,7 +62,6 @@ export default function Profile({route, navigation}: any) {
 		} else {
 			setShowStats(true); }
 	}
-
 
 	return (
 		<View style={styles.container}>
