@@ -105,13 +105,13 @@ export default function Profile({ route, navigation }: any) {
 	];
 	const [showStats, setShowStats] = useState(false);
 	const [films, setFilms] = useState(12);
-	const [reviews, setReviews] = useState(46);
+	const [numReviews, setNumReviews] = useState(46);
 	const [likes, setLikes] = useState(389);
 	const [recentReviews, setRecentReviews] = useState(fakeData);
-	const [username, setUsername] = useState();
-	const [name, setName] = useState();
-	const [email, setEmail] = useState();
-	const [avatar, setAvatar] = useState();
+	const [username, setUsername] = useState('user');
+	const [name, setName] = useState('name');
+	const [email, setEmail] = useState('user@domain.com');
+	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
 
 	useEffect(() => {
 		getOwnProfile(authToken)
@@ -119,7 +119,7 @@ export default function Profile({ route, navigation }: any) {
 				setUsername(r.data.username);
 				setName(r.data.name);
 				setEmail(r.data.email);
-				setAvatar(r.data.avatar);
+				setAvatarUrl(r.data.avatar);
 			})
 			.catch((e) => {
 				console.error(e);
@@ -163,7 +163,7 @@ export default function Profile({ route, navigation }: any) {
 								fontWeight: 'light',
 							}}
 						>
-							{'@handle'}
+							@{username}
 						</Text>
 						<View style={styles.infoContainer}>
 							<View style={styles.info}>
@@ -183,7 +183,7 @@ export default function Profile({ route, navigation }: any) {
 										fontWeight: 'normal',
 									}}
 								>
-									{'48'}
+									{numReviews}
 								</Text>
 							</View>
 							<View style={styles.info}>
@@ -353,7 +353,7 @@ export default function Profile({ route, navigation }: any) {
 							<View style={styles.line} />
 							<View style={styles.stat}>
 								<Text style={styles.title}>Reviews</Text>
-								<Text style={styles.number}>{reviews}</Text>
+								<Text style={styles.number}>{numReviews}</Text>
 							</View>
 							<View style={styles.line} />
 							<View style={styles.stat}>
