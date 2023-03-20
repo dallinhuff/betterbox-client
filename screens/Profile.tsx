@@ -236,8 +236,9 @@ export default function Profile({ route, navigation }: any) {
 							fontSize: 16,
 							marginLeft: 20,
 							color: '#707070',
-							fontWeight: 'medium',
+							fontWeight: 'bold',
 							marginBottom: 20,
+							marginTop: 20,
 						}}
 					>
 						Recent Reviews
@@ -336,7 +337,9 @@ export default function Profile({ route, navigation }: any) {
 						}}
 						onPress={() => show()}
 					>
-						{!showStats && <Text>View Stats</Text>}
+						{!showStats && (
+							<Text style={{ marginBottom: 20 }}>View Stats</Text>
+						)}
 						{showStats && <Text>Hide Stats</Text>}
 						<Image
 							style={styles.downArrow}
@@ -498,7 +501,7 @@ const styles = StyleSheet.create({
 	stats: {
 		alignSelf: 'stretch',
 		backgroundColor: '#fffcf2',
-		marginBottom: -100,
+		marginBottom: 100,
 	},
 	stat: {
 		flexDirection: 'row',
