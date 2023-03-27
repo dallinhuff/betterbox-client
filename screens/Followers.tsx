@@ -6,8 +6,6 @@ import { RootStackParamList } from '../App';
 import { useState } from "react";
 import { loadPartialConfigAsync } from '@babel/core';
 
-import ProfileHeader from './ProfileHeader';
-
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'Home'
