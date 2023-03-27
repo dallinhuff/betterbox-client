@@ -1,12 +1,8 @@
 import { Text, View } from '../components/Themed';
 import React from 'react';
 
-
-type Props = {
-
-};
-
-export default function Feed({ }: Props) {
+export default function Feed({ route, navigation }: any) {
+	const authToken = route.params.authToken;
 
 	return (
 		<View>
