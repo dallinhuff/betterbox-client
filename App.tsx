@@ -4,6 +4,7 @@ import Register from './screens/Register';
 import Login from './screens/Login';
 import Profile from './screens/Profile';
 import Feed from './screens/Feed';
+import PostView from './screens/PostView';
 import MakeReview from './screens/MakeReview';
 import Search from './screens/Search';
 import Notifications from './screens/Notifications';
@@ -22,6 +23,7 @@ export type RootStackParamList = {
 	Home: undefined; // undefined because you aren't passing any params to the home screen
 	//   Register: undefined,
 	MainPages: { authToken: string };
+	FeedPages: undefined;
 	Login: undefined;
 	Profile: { name: string };
 	Register: undefined;
@@ -32,10 +34,53 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
 
+function FeedPages({ route }: any) {
+	return (
+		<Stack.Navigator initialRouteName="Feed">
+			<Stack.Screen
+				name="Feed"
+				component={Feed}
+				options={{
+					headerShown: false,
+				}}
+				initialParams={{ authToken: route.params.authToken }}
+			/>
+			<Stack.Screen
+				name="PostView"
+				component={PostView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+function ProfilePages({ route }: any) {
+	return (
+		<Stack.Navigator initialRouteName="Profile">
+			<Stack.Screen
+				name="Profile}"
+				component={Profile}
+				options={{
+					headerShown: false,
+				}}
+				initialParams={{ authToken: route.params.authToken }}
+			/>
+			<Stack.Screen
+				name="PostView"
+				component={PostView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+
 function MainPages({ route }: any) {
 	return (
 		<Tab.Navigator
-			initialRouteName="Profile"
+			initialRouteName="ProfilePages"
 			screenOptions={{
 				// tabBarActiveTintColor: navStyles.primaryColor.color,
 				// tabBarInactiveTintColor: navStyles.secondaryColor.color,
@@ -44,8 +89,8 @@ function MainPages({ route }: any) {
 			}}
 		>
 			<Tab.Screen
-				name="Feed"
-				component={Feed}
+				name="FeedPages"
+				component={FeedPages}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<MaterialCommunityIcons
@@ -88,7 +133,7 @@ function MainPages({ route }: any) {
 			/>
 			<Tab.Screen
 				name="Profile"
-				component={Profile}
+				component={ProfilePages}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<MaterialCommunityIcons

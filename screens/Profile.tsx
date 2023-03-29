@@ -36,7 +36,8 @@ export default function Profile({ route, navigation }: any) {
 			title: 'Cars',
 			rating: 10,
 			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			review: 'Guido doing the tire switch is a goated scene. Still a classic blah blah blah blah',
+			id: 1,
 		},
 		{
 			key: 2,
@@ -45,6 +46,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 3,
@@ -53,6 +55,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 4,
@@ -61,6 +64,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 5,
@@ -69,6 +73,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 6,
@@ -77,6 +82,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 7,
@@ -85,6 +91,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 8,
@@ -93,6 +100,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 9,
@@ -101,6 +109,7 @@ export default function Profile({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 	];
 	const [showStats, setShowStats] = useState(false);
@@ -134,6 +143,13 @@ export default function Profile({ route, navigation }: any) {
 		}
 	};
 
+	const toPost = (postId: number) => {
+		navigation.navigate('PostView', {
+			authToken: authToken,
+			id: postId,
+		});
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
@@ -147,15 +163,14 @@ export default function Profile({ route, navigation }: any) {
 								color: '#E7D7C1',
 								fontSize: 30,
 								fontWeight: 'bold',
-								marginTop: 20,
 							}}
 						>
 							{'BetterBox'}
 						</Text>
 						<Image
 							style={styles.picture}
-							source={require('../assets/images/film-icon.png')}
-						></Image>
+							source={require('../assets/images/default_profile.jpeg')}
+						/>
 						<Text
 							style={{
 								color: '#707070',
@@ -230,6 +245,43 @@ export default function Profile({ route, navigation }: any) {
 					</View>
 				</View>
 				<ScrollView style={styles.scroller}>
+					<Pressable
+						style={{
+							alignSelf: 'flex-end',
+							marginRight: 20,
+							flexDirection: 'row',
+							backgroundColor: '#fffcf2',
+						}}
+						onPress={() => show()}
+					>
+						{!showStats && (
+							<Text style={{ marginBottom: 20 }}>View Stats</Text>
+						)}
+						{showStats && <Text>Hide Stats</Text>}
+						<Image
+							style={styles.downArrow}
+							source={require('../assets/images/down-arrow.png')}
+						/>
+					</Pressable>
+					{showStats && (
+						<View style={styles.stats}>
+							<View style={styles.line} />
+							<View style={styles.stat}>
+								<Text style={styles.title}>Films</Text>
+								<Text style={styles.number}>{films}</Text>
+							</View>
+							<View style={styles.line} />
+							<View style={styles.stat}>
+								<Text style={styles.title}>Reviews</Text>
+								<Text style={styles.number}>{numReviews}</Text>
+							</View>
+							<View style={styles.line} />
+							<View style={styles.stat}>
+								<Text style={styles.title}>Likes</Text>
+								<Text style={styles.number}>{likes}</Text>
+							</View>
+						</View>
+					)}
 					<Text
 						style={{
 							alignSelf: 'flex-start',
@@ -247,8 +299,13 @@ export default function Profile({ route, navigation }: any) {
 					{recentReviews.map((d) => (
 						<View key={d.key} style={styles.review}>
 							<Image
-								source={require('../assets/images/favicon.png')}
-								style={{ marginRight: 10 }}
+								source={require('../assets/images/cars.jpg')}
+								style={{
+									marginRight: 10,
+									height: 100,
+									width: 70,
+									marginBottom: 20,
+								}}
 							/>
 							<View
 								style={{
@@ -322,49 +379,19 @@ export default function Profile({ route, navigation }: any) {
 								</View>
 								<Text style={{ color: '#707070' }}>{d.date}</Text>
 							</View>
-							<Text style={{ flex: 1, color: '#707070' }}>
-								{d.review}
-							</Text>
+							<Pressable onPress={() => toPost(d.id)}>
+								<Text
+									style={{
+										flex: 1,
+										color: '#707070',
+										width: '45%',
+									}}
+								>
+									{d.review}
+								</Text>
+							</Pressable>
 						</View>
 					))}
-
-					<Pressable
-						style={{
-							alignSelf: 'flex-end',
-							marginRight: 20,
-							flexDirection: 'row',
-							backgroundColor: '#fffcf2',
-						}}
-						onPress={() => show()}
-					>
-						{!showStats && (
-							<Text style={{ marginBottom: 20 }}>View Stats</Text>
-						)}
-						{showStats && <Text>Hide Stats</Text>}
-						<Image
-							style={styles.downArrow}
-							source={require('../assets/images/down-arrow.png')}
-						/>
-					</Pressable>
-					{showStats && (
-						<View style={styles.stats}>
-							<View style={styles.line} />
-							<View style={styles.stat}>
-								<Text style={styles.title}>Films</Text>
-								<Text style={styles.number}>{films}</Text>
-							</View>
-							<View style={styles.line} />
-							<View style={styles.stat}>
-								<Text style={styles.title}>Reviews</Text>
-								<Text style={styles.number}>{numReviews}</Text>
-							</View>
-							<View style={styles.line} />
-							<View style={styles.stat}>
-								<Text style={styles.title}>Likes</Text>
-								<Text style={styles.number}>{likes}</Text>
-							</View>
-						</View>
-					)}
 				</ScrollView>
 			</ScrollView>
 		</SafeAreaView>
@@ -384,7 +411,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
-		backgroundColor: '#ffffff',
+		backgroundColor: '#fffcf2',
 	},
 	gear: {
 		position: 'absolute',
@@ -411,7 +438,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'space-around',
-		backgroundColor: '#ffffff',
+		backgroundColor: '#fffcf2',
 		marginTop: 20,
 	},
 	picture: {
@@ -424,7 +451,7 @@ const styles = StyleSheet.create({
 	infoContainer: {
 		flex: 4,
 		flexDirection: 'row',
-		backgroundColor: '#ffffff',
+		backgroundColor: '#fffcf2',
 		marginTop: 15,
 	},
 	info: {
@@ -432,7 +459,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'space-evenly',
-		backgroundColor: '#ffffff',
+		backgroundColor: '#fffcf2',
 		margin: 10,
 	},
 
