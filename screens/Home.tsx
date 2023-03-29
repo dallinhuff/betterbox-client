@@ -50,7 +50,7 @@ export default function Home({ navigation }: Props) {
 				The social movie rating app.
 			</Text>
 			<DropShadow style={styles.shadowProp}>
-				<Pressable style={styles.getStarted} onPress={() => register()}>
+				<Pressable style={styles.getStarted} onPress={() => login()}>
 					<Text
 						style={{
 							fontSize: '24',
@@ -59,7 +59,7 @@ export default function Home({ navigation }: Props) {
 							color: '#fffcf2',
 						}}
 					>
-						Get Started
+						Sign In
 					</Text>
 				</Pressable>
 			</DropShadow>
@@ -67,7 +67,7 @@ export default function Home({ navigation }: Props) {
 			{/**
 			 * Needed to get to profile page for now. Delete if you need to.
 			 */}
-			<Pressable onPress={() => test()}>
+			{/* <Pressable onPress={() => test()}>
 				<Text
 					style={{
 						fontSize: '24',
@@ -78,9 +78,9 @@ export default function Home({ navigation }: Props) {
 				>
 					Test
 				</Text>
-			</Pressable>
+			</Pressable> */}
 
-			<Pressable onPress={() => login()}>
+			{/* <Pressable onPress={() => login()}>
 				<Text
 					style={{
 						fontSize: '11',
@@ -92,7 +92,7 @@ export default function Home({ navigation }: Props) {
 				>
 					I ALREADY HAVE AN ACCOUNT
 				</Text>
-			</Pressable>
+			</Pressable> */}
 		</View>
 	);
 }
@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 30,
 		marginTop: 200,
+		marginBottom: 200,
 	},
 	film: {
 		flex: 1,

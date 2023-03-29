@@ -18,6 +18,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 2,
@@ -26,6 +27,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 3,
@@ -34,6 +36,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 4,
@@ -42,6 +45,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 5,
@@ -50,6 +54,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 6,
@@ -58,6 +63,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 7,
@@ -66,6 +72,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 8,
@@ -74,6 +81,7 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 		{
 			key: 9,
@@ -82,56 +90,62 @@ export default function Feed({ route, navigation }: any) {
 			rating: 10,
 			date: '3/3/23',
 			review: 'Guido doing the tire switch is a goated scene. Still a classic',
+			id: 1,
 		},
 	];
 	const [feed, setFeed] = useState(fakeData);
 	const [popular, setPopular] = useState(false);
-
+	const toPost = (postId: number) => {
+		navigation.navigate('PostView', {
+			authToken: authToken,
+			id: postId,
+		});
+	};
 	return (
 		<SafeAreaView style={styles.container}>
-			<View style={styles.header}>
-				<Text
-					style={{
-						color: '#E7D7C1',
-						fontSize: 30,
-						fontWeight: 'bold',
-						marginTop: 20,
-					}}
-				>
-					{'BetterBox'}
-				</Text>
-				<View style={styles.header1}>
-					<Pressable onPress={() => setPopular(false)}>
-						<Text
-							style={[
-								{
-									textDecorationLine: popular
-										? 'none'
-										: 'underline',
-								},
-								styles.myFeed,
-							]}
-						>
-							My Feed
-						</Text>
-					</Pressable>
-					<Pressable onPress={() => setPopular(true)}>
-						<Text
-							style={[
-								{
-									textDecorationLine: popular
-										? 'underline'
-										: 'none',
-								},
-								styles.myFeed,
-							]}
-						>
-							Popular
-						</Text>
-					</Pressable>
-				</View>
-			</View>
 			<ScrollView style={styles.scroller}>
+				<View style={styles.header}>
+					<Text
+						style={{
+							color: '#E7D7C1',
+							fontSize: 30,
+							fontWeight: 'bold',
+							marginTop: 20,
+						}}
+					>
+						{'BetterBox'}
+					</Text>
+					<View style={styles.header1}>
+						<Pressable onPress={() => setPopular(false)}>
+							<Text
+								style={[
+									{
+										textDecorationLine: popular
+											? 'none'
+											: 'underline',
+									},
+									styles.myFeed,
+								]}
+							>
+								My Feed
+							</Text>
+						</Pressable>
+						<Pressable onPress={() => setPopular(true)}>
+							<Text
+								style={[
+									{
+										textDecorationLine: popular
+											? 'underline'
+											: 'none',
+									},
+									styles.myFeed,
+								]}
+							>
+								Popular
+							</Text>
+						</Pressable>
+					</View>
+				</View>
 				{feed.map((d) => (
 					<View key={d.key} style={styles.review}>
 						<View
@@ -224,11 +238,18 @@ export default function Feed({ route, navigation }: any) {
 								source={require('../assets/images/cars.jpg')}
 								style={{ marginRight: 30, width: 60, height: 90 }}
 							/>
-							<Text
-								style={{ flex: 1, color: '#707070', fontSize: 15 }}
-							>
-								{d.review}
-							</Text>
+							<Pressable onPress={() => toPost(d.id)}>
+								<Text
+									style={{
+										flex: 1,
+										color: '#707070',
+										fontSize: 15,
+										width: 300,
+									}}
+								>
+									{d.review}
+								</Text>
+							</Pressable>
 						</View>
 						<View style={styles.line} />
 					</View>
@@ -255,7 +276,7 @@ const styles = StyleSheet.create({
 	scroller: {
 		headerShown: false,
 		backgroundColor: '#fffcf2',
-		height: '70%',
+		// height: '70%',
 	},
 	header1: {
 		flex: 2,

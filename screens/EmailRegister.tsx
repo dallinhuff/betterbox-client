@@ -116,7 +116,7 @@ export default function EmailRegister({ navigation }: Props) {
 				<Pressable onPress={() => navigation.navigate('Login')}>
 					<Text
 						style={{
-							fontSize: '11',
+							fontSize: 16,
 							marginTop: 10,
 							color: '#707070',
 							textDecorationLine: 'underline',
