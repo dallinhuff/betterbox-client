@@ -110,7 +110,6 @@ export default function Feed({ route, navigation }: any) {
 							color: '#E7D7C1',
 							fontSize: 30,
 							fontWeight: 'bold',
-							marginTop: 20,
 						}}
 					>
 						{'BetterBox'}
