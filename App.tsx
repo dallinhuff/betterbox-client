@@ -5,6 +5,7 @@ import Login from './screens/Login';
 import Profile from './screens/Profile';
 import Feed from './screens/Feed';
 import PostView from './screens/PostView';
+import MovieView from './screens/MovieView';
 import MakeReview from './screens/MakeReview';
 import Search from './screens/Search';
 import Notifications from './screens/Notifications';
@@ -43,11 +44,18 @@ function FeedPages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				initialParams={{ authToken: route.params.authToken }}
+				//initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
 				component={PostView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="MovieView"
+				component={MovieView}
 				options={{
 					headerShown: false,
 				}}
@@ -59,16 +67,45 @@ function ProfilePages({ route }: any) {
 	return (
 		<Stack.Navigator initialRouteName="Profile">
 			<Stack.Screen
-				name="Profile}"
+				name="Profile"
 				component={Profile}
 				options={{
 					headerShown: false,
 				}}
-				initialParams={{ authToken: route.params.authToken }}
+				//initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
 				component={PostView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="MovieView"
+				component={MovieView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+		</Stack.Navigator>
+	);
+}
+
+function SearchPages({ route }: any) {
+	return (
+		<Stack.Navigator initialRouteName="Search">
+			<Stack.Screen
+				name="Search"
+				component={Search}
+				options={{
+					headerShown: false,
+				}}
+				//initialParams={{ authToken: route.params.authToken }}
+			/>
+			<Stack.Screen
+				name="MovieView"
+				component={MovieView}
 				options={{
 					headerShown: false,
 				}}
@@ -101,11 +138,11 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				initialParams={{ authToken: route.params.authToken }}
+				//initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
-				name="Search"
-				component={Search}
+				name="SearchPages"
+				component={SearchPages}
 				options={{
 					tabBarIcon: ({ color }) => (
 						<MaterialCommunityIcons
@@ -144,7 +181,7 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				initialParams={{ authToken: route.params.authToken }}
+				//initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
 				name="Notifications"

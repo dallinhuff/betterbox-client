@@ -67,7 +67,7 @@ export default function Home({ navigation }: Props) {
 			{/**
 			 * Needed to get to profile page for now. Delete if you need to.
 			 */}
-			{/* <Pressable onPress={() => test()}>
+			<Pressable onPress={() => test()}>
 				<Text
 					style={{
 						fontSize: '24',
@@ -78,7 +78,7 @@ export default function Home({ navigation }: Props) {
 				>
 					Test
 				</Text>
-			</Pressable> */}
+			</Pressable>
 
 			{/* <Pressable onPress={() => login()}>
 				<Text

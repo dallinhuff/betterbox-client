@@ -28,7 +28,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 // const Tab = createMaterialTopTabNavigator();
 
 export default function Profile({ route, navigation }: any) {
-	const authToken = route.params.authToken;
+	//const authToken = route.params.authToken;
 	const fakeData = [
 		{
 			key: 1,
@@ -122,18 +122,18 @@ export default function Profile({ route, navigation }: any) {
 	const [email, setEmail] = useState('user@domain.com');
 	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
 
-	useEffect(() => {
-		getOwnProfile(authToken)
-			.then((r) => {
-				setUsername(r.data.username);
-				setName(r.data.name);
-				setEmail(r.data.email);
-				setAvatarUrl(r.data.avatar);
-			})
-			.catch((e) => {
-				console.error(e);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	getOwnProfile(authToken)
+	// 		.then((r) => {
+	// 			setUsername(r.data.username);
+	// 			setName(r.data.name);
+	// 			setEmail(r.data.email);
+	// 			setAvatarUrl(r.data.avatar);
+	// 		})
+	// 		.catch((e) => {
+	// 			console.error(e);
+	// 		});
+	// }, []);
 
 	const show = () => {
 		if (showStats) {
@@ -145,7 +145,14 @@ export default function Profile({ route, navigation }: any) {
 
 	const toPost = (postId: number) => {
 		navigation.navigate('PostView', {
-			authToken: authToken,
+			//authToken: authToken,
+			id: postId,
+		});
+	};
+
+	const toMovie = (postId: number) => {
+		navigation.navigate('MovieView', {
+			//authToken: authToken,
 			id: postId,
 		});
 	};
@@ -298,16 +305,19 @@ export default function Profile({ route, navigation }: any) {
 
 					{recentReviews.map((d) => (
 						<View key={d.key} style={styles.review}>
-							<Image
-								source={require('../assets/images/cars.jpg')}
-								style={{
-									marginRight: 10,
-									height: 100,
-									width: 70,
-									marginBottom: 20,
-								}}
-							/>
-							<View
+							<Pressable onPress={() => toMovie(d.id)}>
+								<Image
+									source={require('../assets/images/cars.jpg')}
+									style={{
+										marginRight: 10,
+										height: 100,
+										width: 70,
+										marginBottom: 20,
+									}}
+								/>
+							</Pressable>
+							<Pressable
+								onPress={() => toMovie(d.id)}
 								style={{
 									width: 85,
 									backgroundColor: '#fffcf2',
@@ -378,7 +388,7 @@ export default function Profile({ route, navigation }: any) {
 									</View>
 								</View>
 								<Text style={{ color: '#707070' }}>{d.date}</Text>
-							</View>
+							</Pressable>
 							<Pressable onPress={() => toPost(d.id)}>
 								<Text
 									style={{
