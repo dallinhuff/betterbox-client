@@ -101,6 +101,14 @@ export default function Feed({ route, navigation }: any) {
 			id: postId,
 		});
 	};
+
+	const toMovie = (postId: number) => {
+		navigation.navigate('MovieView', {
+			authToken: authToken,
+			id: postId,
+		});
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={styles.scroller}>
@@ -147,7 +155,8 @@ export default function Feed({ route, navigation }: any) {
 				</View>
 				{feed.map((d) => (
 					<View key={d.key} style={styles.review}>
-						<View
+						<Pressable
+							onPress={() => toMovie(d.id)}
 							style={{
 								width: 85,
 								backgroundColor: '#fffcf2',
@@ -225,7 +234,7 @@ export default function Feed({ route, navigation }: any) {
 									/>
 								</View>
 							</View>
-						</View>
+						</Pressable>
 						<View
 							style={{
 								flexDirection: 'row',
@@ -233,10 +242,16 @@ export default function Feed({ route, navigation }: any) {
 								backgroundColor: '#fffcf2',
 							}}
 						>
-							<Image
-								source={require('../assets/images/cars.jpg')}
-								style={{ marginRight: 30, width: 60, height: 90 }}
-							/>
+							<Pressable onPress={() => toMovie(d.id)}>
+								<Image
+									source={require('../assets/images/cars.jpg')}
+									style={{
+										marginRight: 30,
+										width: 60,
+										height: 90,
+									}}
+								/>
+							</Pressable>
 							<Pressable onPress={() => toPost(d.id)}>
 								<Text
 									style={{
