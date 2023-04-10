@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import DropShadow from 'react-native-drop-shadow';
 import {
 	Image,
+	Pressable,
 	SafeAreaView,
 	ScrollView,
 	StyleSheet,
@@ -67,6 +68,13 @@ export default function Search({ route, navigation }: any) {
 		// TODO: Do something with searchInput and populate searchResults
 	};
 
+	const toMovie = (postId: number) => {
+		navigation.navigate('MovieView', {
+			authToken: authToken,
+			id: postId,
+		});
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView style={styles.scroller}>
@@ -124,7 +132,8 @@ export default function Search({ route, navigation }: any) {
 				<View style={styles.line} />
 				<View style={styles.searchResults}>
 					{searchResults.map((d) => (
-						<View
+						<Pressable
+							onPress={() => toMovie(d.id)}
 							key={d.key}
 							style={{ backgroundColor: '#fffcf2', marginLeft: 10 }}
 						>
@@ -132,7 +141,7 @@ export default function Search({ route, navigation }: any) {
 								source={d.image}
 								style={{ height: 130, width: 100, margin: 15 }}
 							/>
-						</View>
+						</Pressable>
 					))}
 				</View>
 			</ScrollView>
