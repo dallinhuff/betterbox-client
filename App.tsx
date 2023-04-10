@@ -44,7 +44,7 @@ function FeedPages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
@@ -72,7 +72,7 @@ function ProfilePages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
@@ -101,7 +101,7 @@ function SearchPages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="MovieView"
@@ -138,7 +138,7 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
 				name="SearchPages"
@@ -181,7 +181,7 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
 				name="Notifications"

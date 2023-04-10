@@ -28,7 +28,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 // const Tab = createMaterialTopTabNavigator();
 
 export default function Profile({ route, navigation }: any) {
-	//const authToken = route.params.authToken;
+	const authToken = route.params.authToken;
 	const fakeData = [
 		{
 			key: 1,
@@ -122,18 +122,18 @@ export default function Profile({ route, navigation }: any) {
 	const [email, setEmail] = useState('user@domain.com');
 	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
 
-	// useEffect(() => {
-	// 	getOwnProfile(authToken)
-	// 		.then((r) => {
-	// 			setUsername(r.data.username);
-	// 			setName(r.data.name);
-	// 			setEmail(r.data.email);
-	// 			setAvatarUrl(r.data.avatar);
-	// 		})
-	// 		.catch((e) => {
-	// 			console.error(e);
-	// 		});
-	// }, []);
+	useEffect(() => {
+		getOwnProfile(authToken)
+			.then((r) => {
+				setUsername(r.data.username);
+				setName(r.data.name);
+				setEmail(r.data.email);
+				setAvatarUrl(r.data.avatar);
+			})
+			.catch((e) => {
+				console.error(e);
+			});
+	}, []);
 
 	const show = () => {
 		if (showStats) {
@@ -145,14 +145,14 @@ export default function Profile({ route, navigation }: any) {
 
 	const toPost = (postId: number) => {
 		navigation.navigate('PostView', {
-			//authToken: authToken,
+			authToken: authToken,
 			id: postId,
 		});
 	};
 
 	const toMovie = (postId: number) => {
 		navigation.navigate('MovieView', {
-			//authToken: authToken,
+			authToken: authToken,
 			id: postId,
 		});
 	};

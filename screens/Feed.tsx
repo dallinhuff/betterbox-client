@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 export default function Feed({ route, navigation }: any) {
-	//const authToken = route.params.authToken;
+	const authToken = route.params.authToken;
 	const fakeData = [
 		{
 			key: 1,
@@ -97,14 +97,14 @@ export default function Feed({ route, navigation }: any) {
 	const [popular, setPopular] = useState(false);
 	const toPost = (postId: number) => {
 		navigation.navigate('PostView', {
-			//authToken: authToken,
+			authToken: authToken,
 			id: postId,
 		});
 	};
 
 	const toMovie = (postId: number) => {
 		navigation.navigate('MovieView', {
-			//authToken: authToken,
+			authToken: authToken,
 			id: postId,
 		});
 	};
