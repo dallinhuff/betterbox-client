@@ -33,7 +33,6 @@ export default function Profile({ route, navigation }: any) {
 	const [films, setFilms] = useState(12);
 	const [numReviews, setNumReviews] = useState(46);
 	const [likes, setLikes] = useState(389);
-	const [recentReviews, setRecentReviews] = useState(fakeData);
 	const [username, setUsername] = useState('user');
 	const [name, setName] = useState('name');
 	const [email, setEmail] = useState('user@domain.com');

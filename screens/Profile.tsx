@@ -157,13 +157,6 @@ export default function Profile({ route, navigation }: any) {
 		});
 	};
 
-	const toMovie = (postId: number) => {
-		navigation.navigate('MovieView', {
-			authToken: authToken,
-			id: postId,
-		});
-	};
-
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
