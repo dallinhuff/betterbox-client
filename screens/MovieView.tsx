@@ -27,99 +27,23 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 // const Tab = createMaterialTopTabNavigator();
 
 export default function Profile({ route, navigation }: any) {
-	const authToken = route.params.authToken;
-	const fakeData = [
-		{
-			key: 1,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic blah blah blah blah',
-			id: 1,
-		},
-		{
-			key: 2,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 3,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 4,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 5,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 6,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 7,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 8,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-		{
-			key: 9,
-			image: 'image',
-			title: 'Cars',
-			rating: 10,
-			date: '3/3/23',
-			review: 'Guido doing the tire switch is a goated scene. Still a classic',
-			id: 1,
-		},
-	];
+	//const authToken = route.params.authToken;
+
 	const [showStats, setShowStats] = useState(false);
 	const [films, setFilms] = useState(12);
 	const [numReviews, setNumReviews] = useState(46);
 	const [likes, setLikes] = useState(389);
-	const [recentReviews, setRecentReviews] = useState(fakeData);
 	const [username, setUsername] = useState('user');
 	const [name, setName] = useState('name');
 	const [email, setEmail] = useState('user@domain.com');
 	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
+
+	const toReview = (postId: number) => {
+		navigation.navigate('MakeReview', {
+			//authToken: authToken,
+			//id: postId,
+		});
+	};
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -199,7 +123,7 @@ export default function Profile({ route, navigation }: any) {
 					</Text>
 				</View>
 				<View style={styles.buttons}>
-					<View style={styles.leave}>
+					<Pressable style={styles.leave} onPress={() => toReview()}>
 						<FontAwesome
 							name="plus"
 							color={'#fff'}
@@ -207,7 +131,7 @@ export default function Profile({ route, navigation }: any) {
 							style={styles.icon}
 						/>
 						<Text style={{ paddingHorizontal: 6 }}>Leave a Review</Text>
-					</View>
+					</Pressable>
 					<View style={styles.read}>
 						<FontAwesome
 							name="eye"
