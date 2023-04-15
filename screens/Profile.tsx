@@ -28,7 +28,7 @@ type ProfileScreenNavigationProp = NativeStackNavigationProp<
 // const Tab = createMaterialTopTabNavigator();
 
 export default function Profile({ route, navigation }: any) {
-	const authToken = route.params.authToken;
+	//const authToken = route.params.authToken;
 	const fakeData = [
 		{
 			key: 1,
@@ -122,18 +122,18 @@ export default function Profile({ route, navigation }: any) {
 	const [email, setEmail] = useState('user@domain.com');
 	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
 
-	useEffect(() => {
-		getOwnProfile(authToken)
-			.then((r) => {
-				setUsername(r.data.username);
-				setName(r.data.name);
-				setEmail(r.data.email);
-				setAvatarUrl(r.data.avatar);
-			})
-			.catch((e) => {
-				console.error(e);
-			});
-	}, []);
+	// useEffect(() => {
+	// 	getOwnProfile(authToken)
+	// 		.then((r) => {
+	// 			setUsername(r.data.username);
+	// 			setName(r.data.name);
+	// 			setEmail(r.data.email);
+	// 			setAvatarUrl(r.data.avatar);
+	// 		})
+	// 		.catch((e) => {
+	// 			console.error(e);
+	// 		});
+	// }, []);
 
 	const show = () => {
 		if (showStats) {
@@ -145,7 +145,14 @@ export default function Profile({ route, navigation }: any) {
 
 	const toPost = (postId: number) => {
 		navigation.navigate('PostView', {
-			authToken: authToken,
+			//authToken: authToken,
+			id: postId,
+		});
+	};
+
+	const toMovie = (postId: number) => {
+		navigation.navigate('MovieView', {
+			//authToken: authToken,
 			id: postId,
 		});
 	};
@@ -161,19 +168,19 @@ export default function Profile({ route, navigation }: any) {
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
 				<View style={styles.header}>
+					<Text
+						style={{
+							color: '#E7D7C1',
+							fontSize: 30,
+							fontWeight: 'bold',
+						}}
+					>
+						{'BetterBox'}
+					</Text>
 					<Icon name="gear" style={styles.gear} />
 					<Icon name="share" style={styles.share} />
 
 					<View style={styles.label}>
-						<Text
-							style={{
-								color: '#E7D7C1',
-								fontSize: 30,
-								fontWeight: 'bold',
-							}}
-						>
-							{'BetterBox'}
-						</Text>
 						<Image
 							style={styles.picture}
 							source={require('../assets/images/default_profile.jpeg')}
@@ -395,6 +402,7 @@ export default function Profile({ route, navigation }: any) {
 										flex: 1,
 										color: '#707070',
 										width: '45%',
+										paddingRight: 50,
 									}}
 								>
 									{d.review}
@@ -415,7 +423,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		backgroundColor: '#fffcf2',
 	},
-
 	header: {
 		headerShown: false,
 		flex: 1,
