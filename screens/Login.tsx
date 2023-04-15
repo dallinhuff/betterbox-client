@@ -1,10 +1,8 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../App';
 import { Text, View } from '../components/Themed';
-import { StyleSheet, Pressable, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Image } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { ScreenHeight } from 'react-native-elements/dist/helpers';
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
 	RootStackParamList,
@@ -20,7 +18,7 @@ export default function Login({ navigation }: Props) {
 	};
 
 	return (
-		<KeyboardAwareScrollView style={styles.fullContainer}>
+		<View style={styles.fullContainer}>
 			<Pressable onPress={() => navigation.navigate('Home')}>
 				<Image
 					style={styles.backButton}
@@ -62,7 +60,7 @@ export default function Login({ navigation }: Props) {
 					</Text>
 				</Pressable>
 			</View>
-		</KeyboardAwareScrollView>
+		</View>
 	);
 }
 
@@ -74,6 +72,7 @@ const styles = StyleSheet.create({
 		shadowRadius: 2,
 	},
 	fullContainer: {
+		flex: 10,
 		backgroundColor: '#fffcf2',
 	},
 	container: {
@@ -102,7 +101,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: 100,
 		height: 80,
-		paddingBottom: 150,
 		resizeMode: 'contain',
 	},
 	backButton: {

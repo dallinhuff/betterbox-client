@@ -5,7 +5,6 @@ import { StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import { useState } from 'react';
 import { NetworkCommunicator } from '../network/NetworkCommunicator';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import loginUser = NetworkCommunicator.loginUser;
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
@@ -36,7 +35,7 @@ export default function EmailLogin({ navigation }: Props) {
 	};
 
 	return (
-		<KeyboardAwareScrollView style={styles.fullContainer}>
+		<View style={styles.fullContainer}>
 			<Pressable onPress={() => navigation.navigate('Home')}>
 				<Image
 					style={styles.backButton}
@@ -45,10 +44,15 @@ export default function EmailLogin({ navigation }: Props) {
 			</Pressable>
 
 			<View style={styles.container}>
+				<Image
+					style={styles.film}
+					source={require('../assets/images/film-icon.png')}
+				></Image>
 				<Text
 					style={{
 						fontSize: 16,
 						color: '#707070',
+						marginTop: -100,
 						textAlign: 'center',
 					}}
 				>
@@ -74,7 +78,6 @@ export default function EmailLogin({ navigation }: Props) {
 						value={username}
 						autoCapitalize="none"
 						placeholder="Username ..."
-						placeholderTextColor="#707070"
 					/>
 					<TextInput
 						style={styles.input}
@@ -84,7 +87,6 @@ export default function EmailLogin({ navigation }: Props) {
 						value={password}
 						autoCapitalize="none"
 						placeholder="Password ..."
-						placeholderTextColor="#707070"
 						secureTextEntry={true}
 					/>
 					{mismatch && (
@@ -118,7 +120,7 @@ export default function EmailLogin({ navigation }: Props) {
 					</Text>
 				</Pressable>
 			</View>
-		</KeyboardAwareScrollView>
+		</View>
 	);
 }
 

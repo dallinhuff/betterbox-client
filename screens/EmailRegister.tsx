@@ -5,7 +5,6 @@ import { StyleSheet, Pressable, Image, TextInput } from 'react-native';
 import DropShadow from 'react-native-drop-shadow';
 import { useState } from 'react';
 import { NetworkCommunicator } from '../network/NetworkCommunicator';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import registerUser = NetworkCommunicator.registerUser;
 
 type ProfileScreenNavigationProp = NativeStackNavigationProp<
@@ -38,7 +37,7 @@ export default function EmailRegister({ navigation }: Props) {
 	};
 
 	return (
-		<KeyboardAwareScrollView style={styles.fullContainer}>
+		<View style={styles.fullContainer}>
 			<Pressable onPress={() => navigation.navigate('Home')}>
 				<Image
 					style={styles.backButton}
@@ -47,12 +46,17 @@ export default function EmailRegister({ navigation }: Props) {
 			</Pressable>
 
 			<View style={styles.container}>
+				<Image
+					style={styles.film}
+					source={require('../assets/images/film-icon.png')}
+				></Image>
 				<Text
 					style={{
 						fontSize: '16',
 						color: '#707070',
+						marginTop: -100,
 						textAlign: 'center',
-						marginBottom: 20,
+						marginBottom: 50,
 					}}
 				>
 					Let’s get started!
@@ -65,7 +69,6 @@ export default function EmailRegister({ navigation }: Props) {
 						}}
 						value={name}
 						placeholder="Name"
-						placeholderTextColor="#707070"
 					/>
 					<TextInput
 						style={styles.input}
@@ -75,7 +78,6 @@ export default function EmailRegister({ navigation }: Props) {
 						value={email}
 						autoCapitalize="none"
 						placeholder="Email"
-						placeholderTextColor="#707070"
 					/>
 					<TextInput
 						style={styles.input}
@@ -85,7 +87,6 @@ export default function EmailRegister({ navigation }: Props) {
 						value={username}
 						autoCapitalize="none"
 						placeholder="Username"
-						placeholderTextColor="#707070"
 					/>
 					<TextInput
 						style={styles.input}
@@ -95,7 +96,6 @@ export default function EmailRegister({ navigation }: Props) {
 						value={password}
 						autoCapitalize="none"
 						placeholder="Password"
-						placeholderTextColor="#707070"
 						secureTextEntry={true}
 					/>
 					<TextInput
@@ -106,7 +106,6 @@ export default function EmailRegister({ navigation }: Props) {
 						value={avatar}
 						autoCapitalize="none"
 						placeholder="Avatar"
-						placeholderTextColor="#707070"
 					/>
 					<DropShadow style={styles.shadowProp}>
 						<Pressable style={styles.button} onPress={() => register()}>
@@ -128,7 +127,7 @@ export default function EmailRegister({ navigation }: Props) {
 					</Text>
 				</Pressable>
 			</View>
-		</KeyboardAwareScrollView>
+		</View>
 	);
 }
 

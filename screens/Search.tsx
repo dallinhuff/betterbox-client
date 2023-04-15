@@ -114,7 +114,6 @@ export default function Search({ route, navigation }: any) {
 							autoCorrect={true}
 							value={searchInput}
 							placeholder="Find films, reviews, or people ..."
-							placeholderTextColor="#707070"
 						/>
 					</View>
 				</DropShadow>
@@ -136,11 +135,11 @@ export default function Search({ route, navigation }: any) {
 						<Pressable
 							onPress={() => toMovie(d.id)}
 							key={d.key}
-							style={{ backgroundColor: '#fffcf2', margin: 5 }}
+							style={{ backgroundColor: '#fffcf2', marginLeft: 10 }}
 						>
 							<Image
 								source={d.image}
-								style={{ height: 130, width: 90 }}
+								style={{ height: 130, width: 100, margin: 15 }}
 							/>
 						</Pressable>
 					))}
@@ -187,7 +186,6 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		flex: 3,
 		flexWrap: 'wrap',
-		justifyContent: 'space-evenly',
 		backgroundColor: '#fffcf2',
 	},
 	line: {

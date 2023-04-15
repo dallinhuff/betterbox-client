@@ -44,7 +44,7 @@ function FeedPages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
@@ -56,13 +56,6 @@ function FeedPages({ route }: any) {
 			<Stack.Screen
 				name="MovieView"
 				component={MovieView}
-				options={{
-					headerShown: false,
-				}}
-			/>
-			<Stack.Screen
-				name="MakeReview"
-				component={MakeReview}
 				options={{
 					headerShown: false,
 				}}
@@ -79,7 +72,7 @@ function ProfilePages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="PostView"
@@ -145,7 +138,7 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
 				name="SearchPages"
@@ -176,7 +169,7 @@ function MainPages({ route }: any) {
 				}}
 			/>
 			<Tab.Screen
-				name="ProfilePages"
+				name="Profile"
 				component={ProfilePages}
 				options={{
 					tabBarIcon: ({ color }) => (
@@ -188,7 +181,7 @@ function MainPages({ route }: any) {
 					),
 					tabBarShowLabel: false,
 				}}
-				//initialParams={{ authToken: route.params.authToken }}
+				initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Tab.Screen
 				name="Notifications"

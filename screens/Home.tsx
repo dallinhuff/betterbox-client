@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable, Image, SafeAreaView } from 'react-native';
+import { StyleSheet, Pressable, Image } from 'react-native';
 
 import { Text, View } from '../components/Themed';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -28,28 +28,27 @@ export default function Home({ navigation }: Props) {
 	};
 
 	return (
-		<SafeAreaView style={styles.container}>
+		<View style={styles.container}>
 			<Image
 				style={styles.film}
 				source={require('../assets/images/film-icon.png')}
 			></Image>
-			<View style={styles.titles}>
-				<Text
-					style={{
-						fontSize: '24',
-						marginBottom: 10,
-						color: '#707070',
-					}}
-				>
-					Welcome to
-				</Text>
-				<Text style={{ fontSize: '48', marginBottom: 10, color: '#707070' }}>
-					BETTERBOX
-				</Text>
-				<Text style={{ fontSize: '16', marginBottom: 10, color: '#707070' }}>
-					The social movie rating app.
-				</Text>
-			</View>
+			<Text
+				style={{
+					fontSize: '24',
+					marginBottom: 10,
+					color: '#707070',
+					marginTop: -300,
+				}}
+			>
+				Welcome to
+			</Text>
+			<Text style={{ fontSize: '48', marginBottom: 10, color: '#707070' }}>
+				BETTERBOX
+			</Text>
+			<Text style={{ fontSize: '16', marginBottom: 10, color: '#707070' }}>
+				The social movie rating app.
+			</Text>
 			<DropShadow style={styles.shadowProp}>
 				<Pressable style={styles.getStarted} onPress={() => login()}>
 					<Text
@@ -94,7 +93,7 @@ export default function Home({ navigation }: Props) {
 					I ALREADY HAVE AN ACCOUNT
 				</Text>
 			</Pressable> */}
-		</SafeAreaView>
+		</View>
 	);
 }
 
@@ -104,12 +103,10 @@ const styles = StyleSheet.create({
 		shadowColor: '#171717',
 		shadowOpacity: 0.4,
 		shadowRadius: 2,
-		flex: 2,
 	},
 	container: {
 		headerShown: false,
 		flex: 1,
-		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
 		backgroundColor: '#fffcf2',
@@ -129,18 +126,14 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: 10,
 		borderRadius: 30,
+		marginTop: 200,
+		marginBottom: 200,
 	},
 	film: {
 		flex: 1,
 		width: 100,
 		height: 80,
 		resizeMode: 'contain',
-		paddingBottom: 50,
-	},
-	titles: {
-		flex: 1,
-		flexDirection: 'column',
-		alignItems: 'center',
-		backgroundColor: '#fffcf2',
+		marginTop: -200,
 	},
 });

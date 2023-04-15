@@ -1,5 +1,4 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { RootStackParamList } from '../App';
 import { Text, View } from '../components/Themed';
 import { StyleSheet, Pressable, Image } from 'react-native';
@@ -19,7 +18,7 @@ export default function Register({ navigation }: Props) {
 	};
 
 	return (
-		<KeyboardAwareScrollView style={styles.fullContainer}>
+		<View style={styles.fullContainer}>
 			<Pressable onPress={() => navigation.navigate('Home')}>
 				<Image
 					style={styles.backButton}
@@ -31,6 +30,18 @@ export default function Register({ navigation }: Props) {
 					style={styles.film}
 					source={require('../assets/images/film-icon.png')}
 				></Image>
+				<Text
+					style={{
+						fontSize: '16',
+						marginBottom: 150,
+						color: '#707070',
+						marginTop: -150,
+						width: 150,
+						textAlign: 'center',
+					}}
+				>
+					Choose an account creation method.
+				</Text>
 				<View style={{ backgroundColor: '#fffcf2', marginBottom: 200 }}>
 					{/* <Pressable style={styles.button}>
                         <Text style={{color: '#fffcf2'}}>Sign in with apple</Text>
@@ -61,7 +72,7 @@ export default function Register({ navigation }: Props) {
 					</Text>
 				</Pressable>
 			</View>
-		</KeyboardAwareScrollView>
+		</View>
 	);
 }
 
@@ -73,6 +84,7 @@ const styles = StyleSheet.create({
 		shadowRadius: 2,
 	},
 	fullContainer: {
+		flex: 10,
 		backgroundColor: '#fffcf2',
 	},
 	container: {
@@ -101,7 +113,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		width: 100,
 		height: 80,
-		paddingBottom: 150,
 		resizeMode: 'contain',
 	},
 	backButton: {
