@@ -104,7 +104,7 @@ export default function Feed({ route, navigation }: any) {
 
 	const toMovie = (postId: number) => {
 		navigation.navigate('MovieView', {
-			authToken: authToken,
+			//authToken: authToken,
 			id: postId,
 		});
 	};

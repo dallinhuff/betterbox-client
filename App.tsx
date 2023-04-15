@@ -101,7 +101,7 @@ function SearchPages({ route }: any) {
 				options={{
 					headerShown: false,
 				}}
-				initialParams={{ authToken: route.params.authToken }}
+				//initialParams={{ authToken: route.params.authToken }}
 			/>
 			<Stack.Screen
 				name="MovieView"
