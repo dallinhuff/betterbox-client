@@ -11,6 +11,10 @@ import Search from './screens/Search';
 import Notifications from './screens/Notifications';
 import EmailRegister from './screens/EmailRegister';
 import EmailLogin from './screens/EmailLogin';
+import Settings from './screens/Settings';
+import FAQ from './screens/FAQ';
+import PrivacyPolicy from './screens/PrivacyPolicy';
+import NotificationPreferences from './screens/NotificationPreferences';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { RootSiblingParent } from 'react-native-root-siblings';
@@ -30,6 +34,10 @@ export type RootStackParamList = {
 	Register: undefined;
 	EmailRegister: undefined;
 	EmailLogin: undefined;
+	Settings: undefined;
+	NotificationPreferences: undefined;
+	FAQ: undefined;
+	PrivacyPolicy: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -91,6 +99,34 @@ function ProfilePages({ route }: any) {
 			<Stack.Screen
 				name="MovieView"
 				component={MovieView}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="Settings"
+				component={Settings}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="NotificationPreferences"
+				component={NotificationPreferences}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="FAQ"
+				component={FAQ}
+				options={{
+					headerShown: false,
+				}}
+			/>
+			<Stack.Screen
+				name="PrivacyPolicy"
+				component={PrivacyPolicy}
 				options={{
 					headerShown: false,
 				}}

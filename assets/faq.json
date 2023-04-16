@@ -1,0 +1,44 @@
+{
+	"questions": [
+		{
+			"id": 1,
+			"question": "What is Betterbox?",
+			"answer": "Betterbox is a platform where users can discover, rate, and review movies. It offers personalized recommendations based on user preferences, as well as the ability to create and share movie lists with friends."
+		},
+		{
+			"id": 2,
+			"question": "How do I create an account?",
+			"answer": "To create an account, click on the 'Sign Up' button on the homepage, and fill out the registration form with your desired username, email address, and password. A confirmation email will be sent to you. Click the link in the email to verify your account and start using the app."
+		},
+		{
+			"id": 3,
+			"question": "How do I rate and review movies?",
+			"answer": "To rate and review a movie, search for the movie using the search bar or browse through the categories. Once you've found the movie, click on it to access its details page. You can then rate the movie using the star rating system, and add a review in the designated review section."
+		},
+		{
+			"id": 4,
+			"question": "How are movie recommendations generated?",
+			"answer": "Betterbox uses a sophisticated algorithm that takes into account your movie ratings, favorite genres, and viewing habits, as well as the preferences of users with similar tastes. This helps generate personalized movie recommendations for you."
+		},
+		{
+			"id": 5,
+			"question": "Can I create and share movie lists with my friends?",
+			"answer": "Yes, you can create custom movie lists, such as 'My Top 10 Comedies' or 'Must-watch Sci-fi Movies.' You can share these lists with your friends through email or social media by clicking on the 'Share' button found on the list page."
+		},
+		{
+			"id": 6,
+			"question": "How do I reset my password?",
+			"answer": "If you've forgotten your password, click on the 'Forgot Password?' link on the login page. Enter your email address, and you will receive an email with a link to reset your password."
+		},
+		{
+			"id": 7,
+			"question": "Is Betterbox available on mobile devices?",
+			"answer": "Yes, Betterbox is available on both Android and iOS devices. You can download it from the Google Play Store or the Apple App Store by searching for 'Movie Review App.'"
+		},
+		{
+			"id": 8,
+			"question": "How can I contact customer support?",
+			"answer": "If you need assistance or have any questions, you can reach our customer support team by clicking on the 'Contact Us' link at the bottom of the website or in the app menu. Alternatively, you can send an email to support@moviereviewapp.com."
+		}
+	]
+}
