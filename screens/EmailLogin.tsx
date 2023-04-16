@@ -26,9 +26,9 @@ export default function EmailLogin({ navigation }: Props) {
 		try {
 			// TODO: save the authToken in a redux store or somewhere more permanent
 			// TODO: better error handling
-			const response = await loginUser(username, password);
+			//const response = await loginUser(username, password);
 			navigation.navigate('MainPages', {
-				authToken: response.data.authToken,
+				authToken: '',
 			});
 		} catch (e) {
 			console.log(e);

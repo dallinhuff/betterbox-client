@@ -38,7 +38,7 @@ export default function Profile({ route, navigation }: any) {
 	const [email, setEmail] = useState('user@domain.com');
 	const [avatarUrl, setAvatarUrl] = useState('http://dummyurl.org');
 
-	const toReview = (postId: number) => {
+	const toReview = () => {
 		navigation.navigate('MakeReview', {
 			//authToken: authToken,
 			//id: postId,

@@ -25,11 +25,11 @@ export default function EmailRegister({ navigation }: Props) {
 
 	const register = async () => {
 		try {
-			const user = { username, password, name, email, avatar };
-			const response = await registerUser(user);
-			const authToken = response.data.authToken;
+			// const user = { username, password, name, email, avatar };
+			// const response = await registerUser(user);
+			// const authToken = response.data.authToken;
 			navigation.navigate('MainPages', {
-				authToken: authToken,
+				authToken: '',
 			});
 		} catch (e) {
 			console.log('ERROR');
