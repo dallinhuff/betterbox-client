@@ -157,6 +157,10 @@ export default function Profile({ route, navigation }: any) {
 		});
 	};
 
+	const toSettings = () => {
+		navigation.navigate('Settings');
+	};
+
 	return (
 		<SafeAreaView style={styles.container}>
 			<ScrollView>
@@ -170,7 +174,7 @@ export default function Profile({ route, navigation }: any) {
 					>
 						{'BetterBox'}
 					</Text>
-					<Icon name="gear" style={styles.gear} />
+					<Icon onPress={toSettings} name="gear" style={styles.gear} />
 					<Icon name="share" style={styles.share} />
 
 					<View style={styles.label}>
